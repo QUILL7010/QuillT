@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
 from sqlalchemy.orm import Session
 
 from db.postgres_db import get_db
-from services.ingestion_service import get_all_syllabi, process_and_save_syllabus
+from services.syllabus_ingestion_service import get_all_syllabi, process_and_save_syllabus
 
 router = APIRouter(tags=["Syllabus"])
 

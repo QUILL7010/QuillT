@@ -2,8 +2,8 @@ import pymupdf
 from fastapi import UploadFile
 from sqlalchemy.orm import Session
 
-from helpers.db_ingestion import clean_pdf_text, remove_file_safely, save_file_to_disk
-from models.ingestion import Syllabus
+from helpers.syllabus_ingestion_helper import clean_pdf_text, remove_file_safely, save_file_to_disk
+from models.syllabus import Syllabus
 
 UPLOAD_DIR = "uploads"
 
