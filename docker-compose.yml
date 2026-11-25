@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:16
+    container_name: quill_t
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 2315
+      POSTGRES_DB: quill_t_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d quill_t_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: .
+    container_name: quill_t_web
+    ports:
+      - "8000:8000"
+    environment:
+      # Note: host is 'db' (the service name above), NOT 'localhost'
+      POSTGRES_DB_URL: postgresql://postgres:2315@db:5432/quill_t_db
+    volumes:
+      - .:/app
+      - ./uploads:/app/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

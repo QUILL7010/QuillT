@@ -1,0 +1,18 @@
+# Virtual environment
+.venv/
+venv/
+
+# Environment variables (database passwords/secrets)
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Uploaded PDF files
+uploads/
+backend/uploads/
+
+# OS & Editor files
+.DS_Store
+.vscode/
